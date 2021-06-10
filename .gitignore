@@ -5,6 +5,8 @@
 *.dll
 *.so
 *.dylib
+/.idea
+/configs/api.toml
 
 # Test binary, built with `go test -c`
 *.test

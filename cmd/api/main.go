@@ -2,9 +2,10 @@ package main
 
 import (
 	"flag"
+	"log"
+
 	"github.com/BurntSushi/toml"
 	"github.com/KirillNikoda/api/api/internal/app/api"
-	"log"
 )
 
 var (

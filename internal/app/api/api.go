@@ -1,6 +1,9 @@
 package api
 
 import (
+	"net/http"
+
+	"github.com/KirillNikoda/api/api/storage"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 )
@@ -11,6 +14,8 @@ type API struct {
 	config *Config
 	logger *logrus.Logger
 	router *mux.Router
+	//Adding field in order to work with storage
+	storage *storage.Storage
 }
 
 // New API constructor: build base API instance
@@ -34,6 +39,11 @@ func (api *API) Start() error {
 	//Configuring Router
 	api.configureRouterField()
 
+	//Configuring Storage
+	if err := api.configureStorageField(); err != nil {
+		return err
+	}
+
 	// At the stage of valid completion, we are gonna start http - server
-	return nil
+	return http.ListenAndServe(api.config.BindArr, api.router)
 }

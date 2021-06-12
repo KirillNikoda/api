@@ -1,10 +1,12 @@
 package api
 
 import (
-	"net/http"
-
 	"github.com/KirillNikoda/api/api/storage"
 	"github.com/sirupsen/logrus"
+)
+
+var (
+	prefix string = "/api/v1"
 )
 
 //Trying to configure our API instance (logger field of API instance)
@@ -19,9 +21,11 @@ func (a *API) configureLoggerField() error {
 
 // Trying to configure Router (router field of API instance)
 func (a *API) configureRouterField() {
-	a.router.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
-		rw.Write([]byte("Hello! This is rest api!"))
-	})
+	a.router.HandleFunc(prefix+"/articles", a.GetAllArticles).Methods("GET")
+	a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
+	a.router.HandleFunc(prefix+"/articles/{id}", a.DeleteArticleById).Methods("DELETE")
+	a.router.HandleFunc(prefix+"/articles", a.PostArticle).Methods("POST")
+	a.router.HandleFunc(prefix+"/user/register", PostUserRegister).Methods("POST")
 }
 
 //Trying to configure our storage (storage field of API instance)

@@ -34,7 +34,7 @@ func (storage *Storage) Open() error {
 	}
 
 	storage.db = db
-	log.Println("database connectcion created successfully")
+	log.Println("database connection created successfully")
 	return nil
 }
 

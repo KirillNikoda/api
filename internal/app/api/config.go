@@ -1,22 +1,29 @@
 package api
 
-import "github.com/KirillNikoda/api/api/storage"
+import (
+	"os"
+
+	"github.com/KirillNikoda/api/api/storage"
+)
 
 //General instance for API server of REST application
 
 type Config struct {
 	//Port
-	BindArr string `toml:"bind_addr"`
+	BindArr string
 	//Logger Level
-	LoggerLevel string `toml:"logger_level"`
+	LoggerLevel string
 	//Storage Level
-	Storage *storage.Config `toml:"database_uri"`
+	Storage *storage.Config
 }
 
 func NewConfig() *Config {
 	return &Config{
-		BindArr:     "8080",
+		BindArr:     os.Getenv("port"),
 		LoggerLevel: "debug",
 		Storage:     storage.NewConfig(),
 	}
+
 }
+
+

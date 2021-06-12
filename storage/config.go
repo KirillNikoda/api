@@ -1,10 +1,14 @@
 package storage
 
+import "os"
+
 type Config struct {
 	//DB connection string
-	DatabaseURI string `toml:"database_uri"`
+	DatabaseURI string
 }
 
 func NewConfig() *Config {
-	return &Config{}
+	return &Config{
+		DatabaseURI: os.Getenv("database_uri"),
+	}
 }

@@ -21,10 +21,9 @@ type API struct {
 // New API constructor: build base API instance
 func New(config *Config) *API {
 	return &API{
-		config:  config,
-		logger:  logrus.New(),
-		router:  mux.NewRouter(),
-		storage: &storage.Storage{},
+		config: config,
+		logger: logrus.New(),
+		router: mux.NewRouter(),
 	}
 }
 

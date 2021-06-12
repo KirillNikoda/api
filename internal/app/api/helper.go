@@ -25,7 +25,7 @@ func (a *API) configureRouterField() {
 	a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
 	a.router.HandleFunc(prefix+"/articles/{id}", a.DeleteArticleById).Methods("DELETE")
 	a.router.HandleFunc(prefix+"/articles", a.PostArticle).Methods("POST")
-	a.router.HandleFunc(prefix+"/user/register", PostUserRegister).Methods("POST")
+	a.router.HandleFunc(prefix+"/user/register", a.PostUserRegister).Methods("POST")
 }
 
 //Trying to configure our storage (storage field of API instance)
